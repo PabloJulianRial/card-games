@@ -1,0 +1,6 @@
+Dive into the timeless allure of Solitaire
+with this Java implementation. Arrange suits
+and ranks strategically to clear the deck.
+Challenge yourself to unveil hidden cards
+and build foundations from Ace to King, all
+while enjoying a relaxing way to pass the time.
