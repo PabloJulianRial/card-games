@@ -1,4 +1,5 @@
 package org.example.UserInteractions;
 
-public class UserPlayer extends Player{
+public class UserPlayer extends Player {
+
 }
