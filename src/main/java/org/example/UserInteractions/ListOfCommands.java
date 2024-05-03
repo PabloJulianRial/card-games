@@ -15,10 +15,10 @@ public class ListOfCommands {
         }
     }
 
-    public static void main(String[] args) {
-        ListOfCommands listOfCommands = new ListOfCommands();
-        listOfCommands.printMessages();
-    }
+//    public static void main(String[] args) {
+//        ListOfCommands listOfCommands = new ListOfCommands();
+//        listOfCommands.printMessages();
+//    }
 
     public int optionSelect() {
         while (true) {

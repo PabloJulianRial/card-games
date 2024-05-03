@@ -30,12 +30,12 @@ public class Deck {
         }
     }
 
-    public static void main(String[] args) {
-        Deck deck = new Deck();
-        deck.shuffle();
-        deck.printDeck();
-
-    }
+//    public static void main(String[] args) {
+//        Deck deck = new Deck();
+//        deck.shuffle();
+//        deck.printDeck();
+//
+//    }
 
     public void printDeck() {
         for (Card card : inDeck) {
