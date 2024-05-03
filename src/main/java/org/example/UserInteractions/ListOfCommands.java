@@ -4,26 +4,36 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ListOfCommands {
+    private final String[] messages;
     Scanner input = new Scanner(System.in);
-    String[] messages = {"Welcome to JAVA card games", "Please enter your name", "Options", "Press 1 for Black Jack",
-            "Press 2 for Solitaire", "Press 3 to see Black Jack instructions", "Press 4 to see Solitaire instructions",
-            "Press 5 to play Black Jack", "Press 5 to play Solitaire", "Press 6 for Black Jack leaderboard",
-            "Press 7 for Solitaire leaderboard", "Press 8 to quit game"};
+
+    // Constructor
+    public ListOfCommands() {
+        messages = new String[CommandOptions.values().length];
+        for (int i = 0; i < CommandOptions.values().length; i++) {
+            messages[i] = CommandOptions.values()[i].getOption();
+        }
+    }
+
+    public static void main(String[] args) {
+        ListOfCommands listOfCommands = new ListOfCommands();
+        listOfCommands.printMessages();
+    }
 
     public int optionSelect() {
         while (true) {
             try {
                 int option = input.nextInt();
-                if (option > 0 && option < 13) {
+                if (option > 0 && option <= CommandOptions.values().length) {
                     return option;
                 } else {
                     System.out.println("Invalid input. Please enter a valid option.");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter an integer value.");
+                input.next();
             }
         }
-
     }
 
     public String nameInput() {
@@ -32,14 +42,14 @@ public class ListOfCommands {
                 return input.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("Invalid name");
+                input.next();
             }
         }
     }
 
-
-    public void printMessage(int index) {
-        System.out.println(messages[index]);
+    public void printMessages() {
+        for (String message : messages) {
+            System.out.println(message);
+        }
     }
-
-
 }
