@@ -11,31 +11,43 @@ public class Deck {
 
     // Constructor
     public Deck() {
-        String[] suits = {"❤️", "♦️", "♣️", "♠️"};
+
+        // suits array from enum values
+        final String[] suits = new String[Suits.values().length];
+        for (int i = 0; i < Suits.values().length; i++) {
+            suits[i] = Suits.values()[i].getSuit();
+        }
+        // symbols array from enum values
+        final String[] symbols = new String[Symbols.values().length];
+        for (int h = 0; h < Symbols.values().length; h++) {
+            symbols[h] = Symbols.values()[h].getSymbol();
+        }
+        //cards array
         for (String suit : suits) {
-            String[] symbols = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
             for (int j = 0; j < symbols.length; j++) {
                 inDeck.add(new Card(symbols[j], suit, j + 2));
             }
         }
     }
 
+    public static void main(String[] args) {
+        Deck deck = new Deck();
+        deck.shuffle();
+        deck.printDeck();
+
+    }
+
     public void printDeck() {
         for (Card card : inDeck) {
             System.out.println(card.getCard());
         }
+
     }
 
     public void shuffle() {
         Collections.shuffle(inDeck);
     }
 
-    public static void main (String [] args) {
-        Deck Cards = new Deck();
-        Cards.shuffle();
-        Cards.printDeck();
-
-    }
     public Card dealCard() {
 
         //MAYBE
@@ -52,7 +64,6 @@ public class Deck {
 //            Number Order .comapreTo function as in Zoology
 //                    .if number equal compare by suit
 //    }
-
 
 
 //    // OVERLOADED METHOD
