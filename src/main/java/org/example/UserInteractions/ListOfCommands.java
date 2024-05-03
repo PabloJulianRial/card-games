@@ -31,7 +31,7 @@ public class ListOfCommands {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter an integer value.");
-                input.next(); // Consume the invalid input to prevent an infinite loop
+                input.next();
             }
         }
     }
@@ -42,7 +42,7 @@ public class ListOfCommands {
                 return input.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("Invalid name");
-                input.next(); // Consume the invalid input to prevent an infinite loop
+                input.next();
             }
         }
     }
