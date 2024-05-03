@@ -10,7 +10,7 @@ public class FileRead {
     // Constructor
     public FileRead() {
         try {
-            this.writer = new BufferedWriter(new FileWriter("Scores.txt"));
+            this.writer = new BufferedWriter(new FileWriter("Scores.txt",true));
             this.reader = new BufferedReader(new FileReader("Scores.txt"));
         }
         catch(IOException e) {
@@ -19,6 +19,9 @@ public class FileRead {
     }
 
     public void writeScore(String username, int score)  {
+        // read first
+        // find empty line
+        // write
         try {
             writer.write("\n" + username + " : " + score);
             writer.close();
@@ -28,7 +31,7 @@ public class FileRead {
         }
     }
 
-    public void readScores(){
+    public void readAllScores(){
         try {
             String line;
             while((line = reader.readLine()) != null) {

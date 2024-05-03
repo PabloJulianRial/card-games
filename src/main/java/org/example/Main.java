@@ -9,7 +9,7 @@ public class Main {
         System.out.println("Hello world!");
         FileRead hamish = new FileRead();
 
-        hamish.writeScore("Hamish", 123);
-        hamish.readScores();
+        hamish.writeScore("Pablo", 234);
+        hamish.readAllScores();
     }
 }
