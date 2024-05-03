@@ -5,10 +5,7 @@ import java.util.Collections;
 
 //
 public class Deck {
-
-
     ArrayList<Card> inDeck = new ArrayList<>();
-
     //MAYBE
     ArrayList<Card> inPlay = new ArrayList<>();
 
