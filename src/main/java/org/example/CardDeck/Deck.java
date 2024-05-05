@@ -7,10 +7,10 @@ import java.util.Collections;
 public class Deck {
 
 
-    ArrayList<Card> inDeck = new ArrayList<>();
+    public ArrayList<Card> inDeck = new ArrayList<>();
 
     //MAYBE
-    ArrayList<Card> inPlay = new ArrayList<>();
+    public ArrayList<Card> inPlay = new ArrayList<>();
 
     // Constructor
     public Deck() {
@@ -33,7 +33,7 @@ public class Deck {
         }
     }
 
-   
+
     public void printDeck() {
         for (Card card : inDeck) {
             System.out.println(card.getCard());

@@ -1,15 +1,12 @@
 package org.example;
 
-import org.example.UserInteractions.FileRead;
+import org.example.Games.Poker;
 
 public class Main {
     public static void main(String[] args) {
+        Poker poker = new Poker();
+        poker.playPoker();
 
 
-        FileRead hamish = new FileRead();
-        hamish.writeScore("a", 1);
-
-        
-        hamish.readAllScores();
     }
 }

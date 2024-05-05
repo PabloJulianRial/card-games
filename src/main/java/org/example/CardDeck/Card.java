@@ -1,16 +1,6 @@
 package org.example.CardDeck;
 
-//A class used to Model a playing card.
-//It should have the following:
-//String suit: Unicode characters for heart, club, diamond, and spade.
-//String symbol: (2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A)
-//int value: (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
-//Encapsulation should be used to hide the data
-//toString method for class description
-
-
-public class Card {
-
+public class Card implements Comparable<Card> {
 
     private final String symbol;
     private final String suit;
@@ -50,5 +40,10 @@ public class Card {
 
     public String toString() {
         return null;
+    }
+
+    @Override
+    public int compareTo(Card otherCard) {
+        return Integer.compare(this.value, otherCard.value);
     }
 }
