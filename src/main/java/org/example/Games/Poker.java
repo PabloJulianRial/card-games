@@ -2,24 +2,26 @@ package org.example.Games;
 
 import org.example.CardDeck.Card;
 import org.example.CardDeck.Deck;
+import org.example.UserInteractions.FileRead;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Poker {
     private final int ante = 50;
+    private final int bet = 0;
+    private final Card[] playerHand = new Card[3];
+    private final Card[] computerHand = new Card[3];
+    private final Deck deck;
+    private final FileRead fileRead = new FileRead();
     String RED = "\u001B[31m";
     String YELLOW = "\u001B[33m";
     String BLUE = "\u001B[34m";
     String RESET = "\u001B[0m";
     private boolean isGameFinished = false;
     private int bank = 200;
-    private int bet = 0;
-    private Card[] playerHand = new Card[3];
-    private Card[] computerHand = new Card[3];
     private int playerScore;
     private int computerScore;
-    private Deck deck;
     private String player = "Pablo";
     private boolean isPlayerThreeOfOKind = false;
     private boolean isPlayerStraightFlush = false;
@@ -41,9 +43,11 @@ public class Poker {
     private boolean playerWins = false;
     private boolean isCombination = false;
     private boolean itsATie = false;
+    private String playAgain = "y";
 
     public Poker() {
         this.deck = new Deck();
+
     }
 
     public void playPoker() {
@@ -56,16 +60,19 @@ public class Poker {
             computerHand[0] = deck.inDeck.get(3);
             computerHand[1] = deck.inDeck.get(4);
             computerHand[2] = deck.inDeck.get(5);
+            Arrays.sort(computerHand);
+            Arrays.sort(playerHand);
             System.out.println(player + "has: £" + bank + " in the bank");
             System.out.println("Place ante");
             int ante = input.nextInt();
-            
+
             System.out.println("Ante: " + ante);
 
             System.out.println(player + "'s Hand: ");
             for (Card card : playerHand) {
                 System.out.print("|" + card.getCard() + "|  ");
             }
+            System.out.println();
             System.out.println("Enter your bet or enter 0 to fold");
             int bet = input.nextInt();
             System.out.println("Bet: " + bet);
@@ -81,8 +88,7 @@ public class Poker {
                 for (Card card : computerHand) {
                     System.out.print("|" + card.getCard() + "|  ");
                 }
-                Arrays.sort(computerHand);
-                Arrays.sort(playerHand);
+
                 System.out.println();
                 ////------------------check for three of a kind---------------------///////////
                 if (computerHand[0].getValue() == computerHand[1].getValue() && computerHand[0].getValue() == playerHand[2].getValue()) {
@@ -127,7 +133,7 @@ public class Poker {
                     System.out.println(BLUE + player + " has a Straight " + RESET);
                 }
                 ////------------------check for pairs ---------------------///////////
-                if (computerHand[0].getValue() == computerHand[1].getValue() || computerHand[0].getValue() == playerHand[2].getValue() || computerHand[1].getValue() == playerHand[2].getValue()) {
+                if (computerHand[0].getValue() == computerHand[1].getValue() || computerHand[0].getValue() == computerHand[2].getValue() || computerHand[1].getValue() == playerHand[2].getValue()) {
                     isComputerPairs = true;
                     isCombination = true;
                     System.out.println(RED + "Computer has a pair " + RESET);
@@ -201,13 +207,12 @@ public class Poker {
                             itsATie = true;
                         }
                     }
-                    //------------------player has 3 of a ind---------------------------
+                    //------------------player has 3 of a kind---------------------------
                 } else {
                     if (isPlayerThreeOfOKind) {
                         playerWins = true;
                     }
                 }
-
                 //---------------comp has straight ------------------
                 if (isComputerStraight) {
                     if (!isPlayerStraight) {
@@ -276,8 +281,10 @@ public class Poker {
                 //--------------------if there are no combinations-------------------------------
                 if (!isCombination) {
                     if (playerHand[0].getValue() > computerHand[0].getValue()) {
+
                         playerWins = true;
                     } else if (playerHand[0].getValue() < computerHand[0].getValue()) {
+
                         computerWins = true;
                     } else {
                         if (playerHand[1].getValue() > computerHand[1].getValue()) {
@@ -309,7 +316,16 @@ public class Poker {
                     System.out.println(player + " looses: " + (ante + bet));
                     System.out.println(player + " has: £" + bank + "in the bank");
                 }
-                isGameFinished = true;
+                System.out.println("Play another round: (enter 'y' for yes or any other letter for no)");
+                playAgain = String.valueOf(Character.toUpperCase(input.next().charAt(0)));
+                if (!playAgain.equals("Y")) {
+                    fileRead.writeScore(player, bank);
+                    isGameFinished = true;
+
+                } else {
+                    isGameFinished = false;
+
+                }
             }
 
         }
