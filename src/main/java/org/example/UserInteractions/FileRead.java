@@ -8,12 +8,14 @@ public class FileRead {
     BufferedWriter writer;
     BufferedReader reader;
     ArrayList<String> leaderboard = new ArrayList<String>();
+    String YELLOW = "\u001B[33m";
+    String RESET = "\u001B[0m";
 
     // Constructor
-    public FileRead() {
+    public FileRead(String file) {
         try {
-            this.writer = new BufferedWriter(new FileWriter("Scores.txt", true));
-            this.reader = new BufferedReader(new FileReader("Scores.txt"));
+            this.writer = new BufferedWriter(new FileWriter("src/main/java/org/example/Assets/Scores.txt", true));
+            this.reader = new BufferedReader(new FileReader(file));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,7 +39,9 @@ public class FileRead {
                 leaderboard.add(line);
             }
             reader.close();
-            System.out.println(leaderboard);
+            for (int i = 0; i < leaderboard.size(); i++) {
+                System.out.println(YELLOW + leaderboard.get(i) + RESET);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

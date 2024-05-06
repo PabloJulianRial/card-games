@@ -8,20 +8,20 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Poker {
-    private final int ante = 50;
-    private final int bet = 0;
+
+    private static final String GREEN = "\u001B[32m";
     private final Card[] playerHand = new Card[3];
     private final Card[] computerHand = new Card[3];
     private final Deck deck;
-    private final FileRead fileRead = new FileRead();
+    private final FileRead fileRead = new FileRead("src/main/java/org/example/Assets/RulesPoker");
     String RED = "\u001B[31m";
+    String CYAN = "\u001B[36m";
     String YELLOW = "\u001B[33m";
     String BLUE = "\u001B[34m";
+    String PURPLE = "\u001B[35m";
     String RESET = "\u001B[0m";
     private boolean isGameFinished = false;
     private int bank = 200;
-    private int playerScore;
-    private int computerScore;
     private String player = "Pablo";
     private boolean isPlayerThreeOfOKind = false;
     private boolean isPlayerStraightFlush = false;
@@ -51,7 +51,11 @@ public class Poker {
     }
 
     public void playPoker() {
+        System.out.println();
         Scanner input = new Scanner(System.in);
+        fileRead.readAllScores();
+        System.out.println("Please enter your name:");
+        player = input.nextLine();
         while (!isGameFinished) {
             deck.shuffle();
             playerHand[0] = deck.inDeck.get(0);
@@ -62,113 +66,97 @@ public class Poker {
             computerHand[2] = deck.inDeck.get(5);
             Arrays.sort(computerHand);
             Arrays.sort(playerHand);
-            System.out.println(player + "has: £" + bank + " in the bank");
-            System.out.println("Place ante");
+            System.out.println(player + " has: £" + bank + " in the bank \uD83D\uDCB0");
+            System.out.println();
+            System.out.println(GREEN + "Place ante:" + RESET);
             int ante = input.nextInt();
-
+            System.out.println();
             System.out.println("Ante: " + ante);
-
-            System.out.println(player + "'s Hand: ");
+            System.out.println();
+            System.out.println(CYAN + player + "'s Hand: " + RESET);
+            System.out.println();
             for (Card card : playerHand) {
                 System.out.print("|" + card.getCard() + "|  ");
             }
             System.out.println();
-            System.out.println("Enter your bet or enter 0 to fold");
+            System.out.println();
+            System.out.println(GREEN + "Enter your bet or enter 0 to fold" + RESET);
             int bet = input.nextInt();
             System.out.println("Bet: " + bet);
-            System.out.println();
             if (bet == 0) {
-                System.out.println(player + " has folded and lost the ante: " + ante);
+                System.out.println(RED + player + " has folded and lost the ante: " + ante + RESET);
                 System.out.println();
                 bank -= ante;
                 System.out.println(player + " has: £" + bank + "in the bank");
                 break;
             } else {
-                System.out.println("Computer's Hand: ");
+                System.out.println();
+                System.out.println(PURPLE + "Computer's Hand: " + RESET);
+                System.out.println();
                 for (Card card : computerHand) {
                     System.out.print("|" + card.getCard() + "|  ");
                 }
-
+                if (computerHand[0].getValue() < 12) {
+                    System.out.println("Computer doesn't qualify (less than Queen high)");
+                    break;
+                }
                 System.out.println();
                 ////------------------check for three of a kind---------------------///////////
                 if (computerHand[0].getValue() == computerHand[1].getValue() && computerHand[0].getValue() == playerHand[2].getValue()) {
                     isComputerThreeOfOKind = true;
                     isCombination = true;
-                    System.out.println(RED + "Computer has Three of a kind " + RESET);
                 }
                 if (playerHand[0].getValue() == playerHand[1].getValue() && playerHand[0].getValue() == playerHand[2].getValue()) {
                     isPlayerThreeOfOKind = true;
                     isCombination = true;
-                    System.out.println(RED + player + " has Three of a kind" + RESET);
                 }
-
                 ////------------------check for flush---------------------///////////
                 if (computerHand[0].getSuit().equals(computerHand[1].getSuit()) && computerHand[1].getSuit().equals(computerHand[2].getSuit())) {
                     isComputerFlush = true;
                     isCombination = true;
-                    System.out.println(YELLOW + "Computer has Flush" + RESET);
-                    for (Card card : computerHand) {
-                        System.out.print(card.getSuit() + " ");
-                    }
-                    System.out.println();
                 }
                 if (playerHand[0].getSuit().equals(playerHand[1].getSuit()) && playerHand[1].getSuit().equals(playerHand[2].getSuit())) {
                     isPlayerFlush = true;
                     isCombination = true;
-                    System.out.println(YELLOW + player + " has Flush" + RESET);
-                    for (Card card : playerHand) {
-                        System.out.print(card.getSuit() + " ");
-                    }
-                    System.out.println();
                 }
                 ////------------------check for straight---------------------///////////
                 if ((computerHand[1].getValue() - computerHand[0].getValue() == 1) && (computerHand[2].getValue() - computerHand[1].getValue() == 1)) {
                     isComputerStraight = true;
                     isCombination = true;
-                    System.out.println(BLUE + "Computer has  a Straight " + RESET);
                 }
                 if ((playerHand[1].getValue() - playerHand[0].getValue() == 1) && (playerHand[2].getValue() - playerHand[1].getValue() == 1)) {
                     isPlayerStraight = true;
                     isCombination = true;
-                    System.out.println(BLUE + player + " has a Straight " + RESET);
                 }
                 ////------------------check for pairs ---------------------///////////
                 if (computerHand[0].getValue() == computerHand[1].getValue() || computerHand[0].getValue() == computerHand[2].getValue() || computerHand[1].getValue() == playerHand[2].getValue()) {
                     isComputerPairs = true;
                     isCombination = true;
-                    System.out.println(RED + "Computer has a pair " + RESET);
                 }
                 if (playerHand[0].getValue() == playerHand[1].getValue() || playerHand[0].getValue() == playerHand[2].getValue() || playerHand[1].getValue() == playerHand[2].getValue()) {
                     isPlayerPairs = true;
                     isCombination = true;
-                    System.out.println(RED + player + " has a pair" + RESET);
                 }
                 ////------------------check for ace ---------------------///////////
                 if (computerHand[0].getSymbol().equals("A") || computerHand[1].getSymbol().equals("A") || computerHand[2].getSymbol().equals("A")) {
                     isComputerAce = true;
-                    System.out.println(RED + "Computer has an ACE " + RESET);
                 }
                 if (playerHand[0].getSymbol().equals("A") || playerHand[1].getSymbol().equals("A") || playerHand[2].getSymbol().equals("A")) {
                     isPlayerAce = true;
-                    System.out.println(RED + player + " has an ACE" + RESET);
                 }
                 ////------------------check for King ---------------------///////////
                 if (computerHand[0].getSymbol().equals("K") || computerHand[1].getSymbol().equals("K") || computerHand[2].getSymbol().equals("K")) {
                     isComputerKing = true;
-                    System.out.println(RED + "Computer has a King " + RESET);
                 }
                 if (playerHand[0].getSymbol().equals("K") || playerHand[1].getSymbol().equals("K") || playerHand[2].getSymbol().equals("K")) {
                     isPlayerKing = true;
-                    System.out.println(RED + player + " has a King" + RESET);
                 }
                 ////------------------check for Queen ---------------------///////////
                 if (computerHand[0].getSymbol().equals("Q") || computerHand[1].getSymbol().equals("Q") || computerHand[2].getSymbol().equals("Q")) {
                     isComputerQueen = true;
-                    System.out.println(RED + "Computer has a Queen " + RESET);
                 }
                 if (playerHand[0].getSymbol().equals("Q") || playerHand[1].getSymbol().equals("Q") || playerHand[2].getSymbol().equals("Q")) {
                     isPlayerQueen = true;
-                    System.out.println(RED + player + " has a Queen" + RESET);
                 }
                 //---------------------check who wins-----------------------------------
                 //---------------comp has straight flush------------------
@@ -281,10 +269,8 @@ public class Poker {
                 //--------------------if there are no combinations-------------------------------
                 if (!isCombination) {
                     if (playerHand[0].getValue() > computerHand[0].getValue()) {
-
                         playerWins = true;
                     } else if (playerHand[0].getValue() < computerHand[0].getValue()) {
-
                         computerWins = true;
                     } else {
                         if (playerHand[1].getValue() > computerHand[1].getValue()) {
@@ -305,16 +291,23 @@ public class Poker {
                 if (playerWins) {
                     bank += bet;
                     bank += ante;
-                    System.out.println(player + " wins!!");
+                    System.out.println();
+                    System.out.println(YELLOW + player + " wins!! \uD83D\uDE00" + RESET);
+                    System.out.println();
                     System.out.println(player + " wins: " + (ante + bet));
-                    System.out.println(player + " has: £" + bank + "in the bank");
+                    System.out.println(player + " has: £" + bank + "in the bank \uD83D\uDCB0");
                 }
                 if (computerWins) {
                     bank -= bet;
                     bank -= ante;
-                    System.out.println("Computer wins!!");
-                    System.out.println(player + " looses: " + (ante + bet));
-                    System.out.println(player + " has: £" + bank + "in the bank");
+                    System.out.println(BLUE + "Computer wins!!" + RESET);
+                    System.out.println();
+                    System.out.println(RED + player + " looses: " + (ante + bet) + RESET);
+                    System.out.println(player + " has: £" + bank + " in the bank \uD83D\uDCB0");
+                    if (bank <= 0) {
+                        System.out.println(RED + "You run out of money! ☹" + RESET);
+                        isGameFinished = true;
+                    }
                 }
                 System.out.println("Play another round: (enter 'y' for yes or any other letter for no)");
                 playAgain = String.valueOf(Character.toUpperCase(input.next().charAt(0)));
@@ -330,4 +323,5 @@ public class Poker {
 
         }
     }
+
 }
