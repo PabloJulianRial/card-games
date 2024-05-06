@@ -25,26 +25,34 @@ public class FileRead {
     public void writeScore(String username, int score) {
         try {
             writer.write(username + " : " + score + "\n");
-            writer.close();
+            writer.flush(); // Flush the stream to ensure data is written immediately
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     // read all the scores that are on the leaderboard and return the score to the terminal
-    public void readAllScores() {
+    public void readAllScores(String file) {
         try {
+            leaderboard.clear(); // Clear the previous leaderboard
+            reader = new BufferedReader(new FileReader(file)); // Reopen the reader
             String line;
             while ((line = reader.readLine()) != null) {
                 leaderboard.add(line);
             }
-            reader.close();
             for (int i = 0; i < leaderboard.size(); i++) {
                 System.out.println(YELLOW + leaderboard.get(i) + RESET);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close(); // Close the reader in a finally block to ensure it's always closed
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
-
 }
