@@ -120,6 +120,8 @@ public class BlackJack {
             System.out.println();
             if (computerDecision(handValue)) {
                 computerHand.add(cardDeck.dealCard());
+                int lastIndex = computerHand.size() - 1;
+                handValue += computerHand.get(lastIndex).getValue();
             } else {
                 userStick = 2;
                 return handValue;
