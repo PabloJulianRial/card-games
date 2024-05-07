@@ -21,21 +21,21 @@ public class FileRead {
         }
     }
 
-    // add a line to the bottom of the file when the game finishes
+
     public void writeScore(String username, int score) {
         try {
             writer.write(username + " : " + score + "\n");
-            writer.flush(); // Flush the stream to ensure data is written immediately
+            writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // read all the scores that are on the leaderboard and return the score to the terminal
+
     public void readAllScores(String file) {
         try {
-            leaderboard.clear(); // Clear the previous leaderboard
-            reader = new BufferedReader(new FileReader(file)); // Reopen the reader
+            leaderboard.clear();
+            reader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = reader.readLine()) != null) {
                 leaderboard.add(line);
@@ -48,7 +48,7 @@ public class FileRead {
         } finally {
             try {
                 if (reader != null) {
-                    reader.close(); // Close the reader in a finally block to ensure it's always closed
+                    reader.close();
                 }
             } catch (IOException e) {
                 e.printStackTrace();

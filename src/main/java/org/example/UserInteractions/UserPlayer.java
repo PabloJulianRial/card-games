@@ -3,14 +3,14 @@ package org.example.UserInteractions;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UserPlayer extends Player {
+public class UserPlayer {
     private final static Scanner scanner = new Scanner(System.in);
 
     public UserPlayer() {
         Scanner scanner = new Scanner(System.in);
     }
 
-    public int getInput(int bank) {
+    public int getBet(int bank) {
 
         int input = 0;
         try {

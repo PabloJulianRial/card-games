@@ -17,6 +17,7 @@ public class Poker {
     private static final String PURPLE = "\u001B[35m";
     private static final String RESET = "\u001B[0m";
     private static final String GREEN = "\u001B[32m";
+    public final Deck deck;
     private final Dealer dealer;
     private final UserPlayer user;
     private final Card[] playerHand = new Card[3];
@@ -24,11 +25,12 @@ public class Poker {
     private final FileRead fileRead = new FileRead("src/main/java/org/example/Assets/RulesPoker");
     private boolean isGameFinished = false;
     private int bank = 200;
-    private int ante = 0;
     private int bet = 0;
+    private int ante = 0;
+    private int pot = 0;
 
     public Poker() {
-        Deck deck = new Deck();
+        this.deck = new Deck();
         this.dealer = new Dealer(deck);
         this.user = new UserPlayer();
     }
@@ -41,25 +43,27 @@ public class Poker {
         String player = input.nextLine();
         System.out.println(YELLOW + "Welcome " + player + ", let's play some poker. Here is £200 to get you started. Good luck!" + RESET);
         while (!isGameFinished) {
+            deck.printDeck();
             dealer.dealHands(playerHand, computerHand);
+            deck.printDeck();
             Arrays.sort(computerHand);
             Arrays.sort(playerHand);
             System.out.println(player + " has: £" + bank + " in the bank \uD83D\uDCB0");
             System.out.println();
             System.out.println(GREEN + "Place ante to see your cards" + RESET);
-            ante = user.getInput(bank);
-            bank -= ante;
+            ante = user.getBet(bank);
             System.out.println("Ante: £" + ante);
             System.out.println();
             System.out.println(CYAN + player + "'s Hand: " + RESET);
             dealer.printHand(playerHand, player);
+            deck.printDeck();
             System.out.println(GREEN + "Enter your bet to see computer's cards or 0 to fold" + RESET);
-            bet = user.getInput(bank);
+            bet = user.getBet(bank);
             System.out.println("Bet: £" + bet);
             if (bet == 0) {
                 System.out.println(RED + player + " has folded and lost the ante: " + ante + RESET);
                 System.out.println();
-                bank -= ante;
+
                 System.out.println(player + " has: £" + bank + "in the bank");
                 bet = input.nextInt();
                 System.out.println("Bet: £" + bet);
@@ -81,7 +85,7 @@ public class Poker {
                 System.out.println();
                 dealer.checkHands(playerHand, computerHand);
                 dealer.determineWinner(playerHand, computerHand, player);
-                int pot = bet + ante;
+                pot = bet + ante;
                 if (dealer.computerWins) {
                     System.out.println(RED + "Computer wins" + RESET);
                     bank -= pot;
@@ -93,7 +97,6 @@ public class Poker {
                 } else {
                     System.out.println("It's a tie. Bet and ante stay in the table.");
                 }
-
                 System.out.println();
                 System.out.println(player + " has " + bank + " in the bank");
                 System.out.println("Play another round: (enter 'y' for yes or any other letter for no)");
