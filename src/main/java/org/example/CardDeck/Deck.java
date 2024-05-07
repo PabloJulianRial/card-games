@@ -46,10 +46,4 @@ public class Deck {
         return newcard;
     }
 
-    public void printHand(Card[] hand, String playerName) {
-        for (Card card : hand) {
-            System.out.print("|" + card.getCard() + "|  ");
-        }
-        System.out.println();
-    }
 }
