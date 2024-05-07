@@ -21,15 +21,6 @@ public class BlackJack {
         System.out.println("Welcome To The Wonderful World Of Java BlackJack");
         int playerScore;
         int computerScore;
-        //
-        for (Card card : cardDeck.inDeck) {
-            if ((card.getSymbol().equals("J")) || (card.getSymbol().equals("Q")) || (card.getSymbol().equals("K")) ) {
-                card.setValue(10);
-            }
-            else if (card.getSymbol().equals("A")) {
-                card.setValue(11);
-            }
-        }
 
         userInput = new ListOfCommands();
         while (stopPlaying != 2) {
@@ -62,8 +53,19 @@ public class BlackJack {
     }
 
     private void start() {
-        //cardDeck.printDeck();
+        cardDeck = new Deck();
         cardDeck.shuffle();
+        for (Card card : cardDeck.inDeck) {
+            if ((card.getSymbol().equals("J")) || (card.getSymbol().equals("Q")) || (card.getSymbol().equals("K")) ) {
+                card.setValue(10);
+            }
+            else if (card.getSymbol().equals("A")) {
+                card.setValue(11);
+            }
+        }
+        userStick = 1;
+        userHand.removeAll(userHand);
+        computerHand.removeAll(computerHand);
         userHand.add(cardDeck.dealCard());
         userHand.add(cardDeck.dealCard());
         computerHand.add(cardDeck.dealCard());
@@ -73,7 +75,6 @@ public class BlackJack {
     // return true if player sticks return false if player out
     private int playerHand() {
         int handValue = 0;
-
         for (Card card : userHand) {
             handValue += card.getValue();
         }
@@ -83,35 +84,31 @@ public class BlackJack {
             System.out.print(card.getSuit()  + " ");
         }
         while((handValue <= 21) && (userStick != 2)) {
+            System.out.println("value of hand start " + handValue);
             System.out.println();
-            System.out.println("would you like to stick or twist 1/2");
+            System.out.println("would you like to twist or stick 1/2");
             // read user input
-            if(userInput.optionSelect() == 1) {
+            if (userInput.optionSelect() == 1) {
                 userHand.add(cardDeck.dealCard());
-
+                handValue = 0;
                 for (Card card : userHand) {
                     System.out.print(card.getSymbol());
                     System.out.print(card.getSuit());
-                    System.out.println();
-
+                    System.out.print(card.getValue());
                     handValue += card.getValue();
-
                 }
-            }
-            else {
-                // player sticks below 21
+                System.out.println();
+                System.out.println("value of hand " + handValue);
+            } else {
                 return handValue;
             }
         }
-        // player is over 21
-        System.out.println("reached");
         return -1;
 
     }
 
     // How does this end ?
     private int computerHand() {
-        // Print User Hand Symbols
         int handValue = 0;
         while((handValue <= 21) & (userStick != 2)) {
             handValue = 0;
