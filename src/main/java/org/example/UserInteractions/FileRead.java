@@ -8,39 +8,51 @@ public class FileRead {
     BufferedWriter writer;
     BufferedReader reader;
     ArrayList<String> leaderboard = new ArrayList<String>();
+    String YELLOW = "\u001B[33m";
+    String RESET = "\u001B[0m";
 
     // Constructor
-    public FileRead() {
+    public FileRead(String file) {
         try {
-            this.writer = new BufferedWriter(new FileWriter("Scores.txt", true));
-            this.reader = new BufferedReader(new FileReader("Scores.txt"));
+            this.writer = new BufferedWriter(new FileWriter("src/main/java/org/example/Assets/Scores.txt", true));
+            this.reader = new BufferedReader(new FileReader(file));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // add a line to the bottom of the file when the game finishes
+
     public void writeScore(String username, int score) {
         try {
             writer.write(username + " : " + score + "\n");
-            writer.close();
+            writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // read all the scores that are on the leaderboard and return the score to the terminal
-    public void readAllScores() {
+
+    public void readAllScores(String file) {
         try {
+            leaderboard.clear();
+            reader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = reader.readLine()) != null) {
                 leaderboard.add(line);
             }
-            reader.close();
-            System.out.println(leaderboard);
+            for (int i = 0; i < leaderboard.size(); i++) {
+                System.out.println(YELLOW + leaderboard.get(i) + RESET);
+            }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
-
 }

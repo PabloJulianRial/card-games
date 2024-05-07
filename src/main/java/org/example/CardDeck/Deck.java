@@ -5,9 +5,8 @@ import java.util.Collections;
 
 //
 public class Deck {
-    ArrayList<Card> inDeck = new ArrayList<>();
-    //MAYBE
-    ArrayList<Card> inPlay = new ArrayList<>();
+
+    public ArrayList<Card> inDeck = new ArrayList<>();
 
     // Constructor
     public Deck() {
@@ -30,12 +29,11 @@ public class Deck {
         }
     }
 
-   
+
     public void printDeck() {
         for (Card card : inDeck) {
-            System.out.println(card.getCard());
+            System.out.print(card.getCard());
         }
-
     }
 
     public void shuffle() {
@@ -43,32 +41,9 @@ public class Deck {
     }
 
     public Card dealCard() {
-
-        //MAYBE
-        inDeck.get(0).Deal();
-
-        //MAYBE
-        inPlay.add(inDeck.get(0));
+        Card newcard = inDeck.get(0);
         inDeck.remove(0);
-
-        return inDeck.get(0);
+        return newcard;
     }
-
-//    public void sortDeck() {
-//            Number Order .comapreTo function as in Zoology
-//                    .if number equal compare by suit
-//    }
-
-
-//    // OVERLOADED METHOD
-//    public void sortDeck(Comparator<T> comparator) {
-//    //        Sort by value(in game value eg. Queen of spades being 26)
-//    }
-
-
-//    public void resetDeck() {
-//    //        All Cards returned to InDeck.
-//    }
-
 
 }
