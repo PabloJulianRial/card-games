@@ -8,6 +8,7 @@ import org.example.UserInteractions.ListOfCommands;
 public class Main {
     static Poker poker = new Poker();
     static BlackJack blackJack = new BlackJack();
+ 
     static ListOfCommands commands = new ListOfCommands();
     static FileRead PokerLeaderboard = new FileRead("src/main/java/org/example/Assets/PokerScores.txt");
     static FileRead BlackjackLeaderboard = new FileRead("src/main/java/org/example/Assets/BlackjackScores.txt");

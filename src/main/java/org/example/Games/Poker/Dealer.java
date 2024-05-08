@@ -48,7 +48,7 @@ public class Dealer {
             newState.isPlayerStraight = true;
             newState.isCombination = true;
         }
-        if (computerHand[0].getValue() == computerHand[1].getValue() || computerHand[0].getValue() == computerHand[2].getValue() || computerHand[1].getValue() == playerHand[2].getValue()) {
+        if (computerHand[0].getValue() == computerHand[1].getValue() || computerHand[0].getValue() == computerHand[2].getValue() || computerHand[1].getValue() == computerHand[2].getValue()) {
             newState.isComputerPairs = true;
             newState.isCombination = true;
         }
@@ -165,21 +165,21 @@ public class Dealer {
         }
         if (newState.isComputerPairs) {
             if (!newState.isPlayerPairs) {
-                System.out.println("Computer has a pair of " + computerHand[0].getSymbol() + "'s");
+                System.out.println("Computer has a pair of " + computerHand[1].getSymbol() + "'s");
                 newState.computerWins = true;
             } else {
-                System.out.println("Computer has a pair");
-                System.out.println(player + " has a pair");
-                if (playerHand[0].getValue() > computerHand[0].getValue()) {
+                System.out.println("Computer has a pair of " + computerHand[1].getSymbol() + "'s");
+                System.out.println(player + " has a pair of " + playerHand[1].getSymbol() + "'s");
+                if (playerHand[1].getValue() > computerHand[1].getValue()) {
 
                     newState.playerWins = true;
-                } else if (playerHand[0].getValue() < computerHand[0].getValue()) {
+                } else if (playerHand[1].getValue() < computerHand[1].getValue()) {
 
                     newState.computerWins = true;
                 } else {
-                    if (playerHand[2].getValue() > computerHand[2].getValue()) {
+                    if (playerHand[0].getValue() + playerHand[1].getValue() + playerHand[2].getValue() > computerHand[0].getValue() + computerHand[1].getValue() + computerHand[2].getValue()) {
                         newState.playerWins = true;
-                    } else if (playerHand[2].getValue() < computerHand[2].getValue()) {
+                    } else if (playerHand[0].getValue() + playerHand[1].getValue() + playerHand[2].getValue() < computerHand[0].getValue() + computerHand[1].getValue() + computerHand[2].getValue()) {
                         newState.computerWins = true;
                     } else {
                         newState.itsATie = true;
@@ -214,11 +214,13 @@ public class Dealer {
                     } else if (playerHand[2].getValue() < computerHand[2].getValue()) {
                         System.out.println("Computer has " + computerHand[0].getSymbol() + " high,  a " + computerHand[1].getSymbol() + " and a " + computerHand[2].getSymbol());
                         newState.computerWins = true;
+                    } else {
+                        newState.itsATie = true;
                     }
                 }
             }
         }
-        newState.itsATie = !newState.computerWins && !newState.playerWins;
+
     }
 
     public boolean hasLessThanQueenHigh(Card[] computerHand) {
@@ -234,14 +236,4 @@ public class Dealer {
         return false;
     }
 
-    private int compareHands(Card[] playerHand, Card[] computerHand) {
-        for (int i = 0; i < playerHand.length; i++) {
-            int compareValue = Integer.compare(playerHand[i].getValue(), computerHand[i].getValue());
-            if (compareValue != 0) {
-                return compareValue;
-            }
-        }
-        newState.resetBooleans();
-        return 0;
-    }
 }
