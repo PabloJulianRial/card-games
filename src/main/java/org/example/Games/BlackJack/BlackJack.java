@@ -10,18 +10,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BlackJack {
-    Deck cardDeck;
-    ListOfCommands userInput;
-    ArrayList<Card> userHand = new ArrayList<>();
-    ArrayList<Card> computerHand = new ArrayList<>();
-    int userStick = 0;
-    int stopPlaying = 1;
+    private Deck cardDeck;
+    private ListOfCommands userInput;
+    private ArrayList<Card> userHand = new ArrayList<>();
+    private ArrayList<Card> computerHand = new ArrayList<>();
+    private int userStick = 0;
+    private int stopPlaying = 1;
     private final FileRead leaderBoard = new FileRead("src/main/java/org/example/Assets/BlackJackScores.txt");
-
-    // new code for banking
-    int playerBank = 200;
-    UserPlayer user;
-    int bet = 0;
+    private int playerBank = 200;
+    private UserPlayer user;
+    private int bet = 0;
 
     public void play(){
         cardDeck = new Deck();
@@ -44,13 +42,11 @@ public class BlackJack {
                     playerBank = playerBank - bet;
                     System.out.println("YOU lost £" + bet + " THAT MEANS YOU HAVE £" + playerBank + " IN THE BANK");
                 }
-
                 else {
                     System.out.println("AGAINST THE ODDS YOU BEAT THE HOUSE, IT MUST BE YOUR LUCKY NIGHT");
                     playerBank = playerBank + bet;
                     System.out.println("YOU WON £" + bet + " THAT MEANS YOU HAVE £" + playerBank + " IN THE BANK");
                 }
-
             }
 
             else {
@@ -94,9 +90,6 @@ public class BlackJack {
 
     private int playerHand() {
         int handValue = 0;
-        for (Card card : userHand) {
-            handValue += card.getValue();
-        }
 
         System.out.println("Dealers Hand");
         System.out.println(computerHand.get(0).getCard());
@@ -108,30 +101,28 @@ public class BlackJack {
         for (Card card : userHand) {
             System.out.print(card.getSymbol());
             System.out.print(card.getSuit()  + " ");
+            handValue += card.getValue();
         }
+
         while((handValue <= 21) && (userStick != 2)) {
-            //System.out.println("value of hand start " + handValue);
             System.out.println();
             System.out.println("would you like to twist or stick 1/2");
-            // read user input
             if (userInput.optionSelect() == 1) {
                 userHand.add(cardDeck.dealCard());
                 handValue = 0;
                 for (Card card : userHand) {
                     System.out.print(card.getSymbol());
                     System.out.print(card.getSuit());
-                    //System.out.print(card.getValue());
                     handValue += card.getValue();
                 }
                 System.out.println();
-                //System.out.println("value of hand " + handValue);
             } else {
                 return handValue;
             }
         }
         return -1;
-
     }
+
     private int computerHand() {
         int handValue = 0;
         while((handValue <= 21) & (userStick != 2)) {
