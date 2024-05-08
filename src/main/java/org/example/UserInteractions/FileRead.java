@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class FileRead {
 
+    private final String file;
     BufferedWriter writer;
     BufferedReader reader;
     ArrayList<String> leaderboard = new ArrayList<String>();
@@ -13,8 +14,9 @@ public class FileRead {
 
     // Constructor
     public FileRead(String file) {
+        this.file = file;
         try {
-            this.writer = new BufferedWriter(new FileWriter("src/main/java/org/example/Assets/Scores.txt", true));
+            this.writer = new BufferedWriter(new FileWriter(file, true));
             this.reader = new BufferedReader(new FileReader(file));
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,10 +34,10 @@ public class FileRead {
     }
 
 
-    public void readAllScores(String file) {
+    public void readAllScores() {
         try {
             leaderboard.clear();
-            reader = new BufferedReader(new FileReader(file));
+            reader = new BufferedReader(new FileReader(this.file));
             String line;
             while ((line = reader.readLine()) != null) {
                 leaderboard.add(line);

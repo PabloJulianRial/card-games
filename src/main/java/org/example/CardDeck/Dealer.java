@@ -64,11 +64,11 @@ public class Dealer {
             isCombination = true;
         }
         ////------------------check for straight---------------------///////////
-        if ((computerHand[1].getValue() - computerHand[0].getValue() == 1) && (computerHand[2].getValue() - computerHand[1].getValue() == 1)) {
+        if ((computerHand[0].getValue() - computerHand[1].getValue() == 1) && (computerHand[1].getValue() - computerHand[2].getValue() == 1)) {
             isComputerStraight = true;
             isCombination = true;
         }
-        if ((playerHand[1].getValue() - playerHand[0].getValue() == 1) && (playerHand[2].getValue() - playerHand[1].getValue() == 1)) {
+        if ((playerHand[0].getValue() - playerHand[1].getValue() == 1) && (playerHand[1].getValue() - playerHand[2].getValue() == 1)) {
             isPlayerStraight = true;
             isCombination = true;
         }
@@ -220,8 +220,8 @@ public class Dealer {
                 computerWins = true;
                 //------------------------both pairs----------------------
             } else {
-                System.out.println("Computer has a pair of " + computerHand[0].getSymbol() + "'s and a " + computerHand[2].getSymbol());
-                System.out.println(player + " has a pair of " + playerHand[0].getSymbol() + "'s and a " + playerHand[2].getSymbol());
+                System.out.println("Computer has a pair");
+                System.out.println(player + " has a pair");
                 if (playerHand[0].getValue() > computerHand[0].getValue()) {
 
                     playerWins = true;
@@ -240,7 +240,7 @@ public class Dealer {
             }
         } else {
             if (isPlayerPairs) {
-                System.out.println(player + " has a pair of " + playerHand[0].getSymbol() + "'s");
+                System.out.println(player + " has a pair");
                 playerWins = true;
             }
         }
@@ -272,5 +272,30 @@ public class Dealer {
                 }
             }
         }
+
+    }
+
+    public void resetBooleans() {
+        isComputerThreeOfOKind = false;
+        isCombination = false;
+        isPlayerThreeOfOKind = false;
+        isComputerFlush = false;
+        isPlayerFlush = false;
+        isComputerStraight = false;
+        isPlayerStraight = false;
+        isComputerPairs = false;
+        isPlayerPairs = false;
+        isComputerAce = false;
+        isPlayerAce = false;
+        isComputerKing = false;
+        isPlayerKing = false;
+        isComputerQueen = false;
+        isPlayerQueen = false;
+        isComputerStraightFlush = false;
+        isPlayerStraightFlush = false;
+        computerWins = false;
+        playerWins = false;
+        itsATie = false;
+
     }
 }
