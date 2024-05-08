@@ -2,26 +2,37 @@ package org.example.Games.BlackJack;
 
 import org.example.CardDeck.Card;
 import org.example.CardDeck.Deck;
+import org.example.UserInteractions.FileRead;
 import org.example.UserInteractions.ListOfCommands;
+import org.example.UserInteractions.UserPlayer;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BlackJack {
-    int computerWon = 0;
-    int userWon = 0;
     Deck cardDeck;
     ListOfCommands userInput;
     ArrayList<Card> userHand = new ArrayList<>();
     ArrayList<Card> computerHand = new ArrayList<>();
     int userStick = 0;
     int stopPlaying = 1;
+    private final FileRead leaderBoard = new FileRead("src/main/java/org/example/Assets/BlackJackScores.txt");
+
+    // new code for banking
+    int playerBank = 200;
+    UserPlayer user;
+    int bet = 0;
 
     public void play(){
         cardDeck = new Deck();
+        user = new UserPlayer();
+        Scanner input = new Scanner(System.in);
         System.out.println("Welcome To The Wonderful World Of Java BlackJack");
+        System.out.println("Please enter your name:");
+        String player = input.nextLine();
+
         int playerScore;
         int computerScore;
-
         userInput = new ListOfCommands();
         while (stopPlaying != 2) {
             start();
@@ -30,24 +41,33 @@ public class BlackJack {
                 computerScore = computerHand();
                 if (computerScore >= playerScore) {
                     System.out.println("COMPUTER GOT A BETTER SCORE COMPUTER WINS");
-                    computerWon ++;
+                    playerBank = playerBank - bet;
+                    System.out.println("YOU lost £" + bet + " THAT MEANS YOU HAVE £" + playerBank + " IN THE BANK");
                 }
+
                 else {
                     System.out.println("AGAINST THE ODDS YOU BEAT THE HOUSE, IT MUST BE YOUR LUCKY NIGHT");
-                    userWon++;
+                    playerBank = playerBank + bet;
+                    System.out.println("YOU WON £" + bet + " THAT MEANS YOU HAVE £" + playerBank + " IN THE BANK");
                 }
+
             }
+
             else {
                 // gambling may need to be added here
                 System.out.println("YOU WENT BUST YOU BLOODY FOOL!");
                 System.out.println("THE COMPUTER WINS THIS HAND MATEY");
-                computerWon ++;
+                playerBank = playerBank - bet;
+                System.out.println("YOU lost £" + bet + " THAT MEANS YOU HAVE £" + playerBank + " IN THE BANK");
             }
             System.out.println("WOULD YOU LIKE TO PLAY ANOTHER ROUND? 1 for Yes 2 for No");
             stopPlaying = userInput.optionSelect();
             if (stopPlaying == 1) {
                 cardDeck = new Deck();
                 start();
+            }
+            else {
+                leaderBoard.writeScore(player, playerBank);
             }
         }
     }
@@ -77,6 +97,13 @@ public class BlackJack {
         for (Card card : userHand) {
             handValue += card.getValue();
         }
+
+        System.out.println("Dealers Hand");
+        System.out.println(computerHand.get(0).getCard());
+
+        System.out.println("You have " + playerBank + " in the bank, please enter your bet below");
+        bet = user.getBet(playerBank);
+        System.out.println("Bet: £" + bet);
 
         for (Card card : userHand) {
             System.out.print(card.getSymbol());

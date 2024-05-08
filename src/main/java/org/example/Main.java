@@ -15,7 +15,6 @@ public class Main {
     static FileRead PokerRules = new FileRead("src/main/java/org/example/Assets/PokerRules.txt");
 
     public static void main(String[] args) {
-
         boolean gameStarted = false;
         while (!gameStarted) {
             commands.printMessages();
