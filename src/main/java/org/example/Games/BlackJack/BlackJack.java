@@ -74,12 +74,8 @@ public class BlackJack {
 
     private int playerHand() {
         int handValue = 0;
-        int lowAceHandValue = 0;
         for (Card card : userHand) {
             handValue += card.getValue();
-            if (card.getSymbol().equals("A")) {
-                lowAceHandValue = handVAlue
-            }
         }
 
         for (Card card : userHand) {
@@ -87,7 +83,7 @@ public class BlackJack {
             System.out.print(card.getSuit()  + " ");
         }
         while((handValue <= 21) && (userStick != 2)) {
-            System.out.println("value of hand start " + handValue);
+            //System.out.println("value of hand start " + handValue);
             System.out.println();
             System.out.println("would you like to twist or stick 1/2");
             // read user input
@@ -97,11 +93,11 @@ public class BlackJack {
                 for (Card card : userHand) {
                     System.out.print(card.getSymbol());
                     System.out.print(card.getSuit());
-                    System.out.print(card.getValue());
+                    //System.out.print(card.getValue());
                     handValue += card.getValue();
                 }
                 System.out.println();
-                System.out.println("value of hand " + handValue);
+                //System.out.println("value of hand " + handValue);
             } else {
                 return handValue;
             }
