@@ -72,11 +72,14 @@ public class BlackJack {
         computerHand.add(cardDeck.dealCard());
     }
 
-    // return true if player sticks return false if player out
     private int playerHand() {
         int handValue = 0;
+        int lowAceHandValue = 0;
         for (Card card : userHand) {
             handValue += card.getValue();
+            if (card.getSymbol().equals("A")) {
+                lowAceHandValue = handVAlue
+            }
         }
 
         for (Card card : userHand) {
@@ -106,8 +109,6 @@ public class BlackJack {
         return -1;
 
     }
-
-    // How does this end ?
     private int computerHand() {
         int handValue = 0;
         while((handValue <= 21) & (userStick != 2)) {
