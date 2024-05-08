@@ -87,7 +87,7 @@ public class BlackJack {
             System.out.print(card.getSuit()  + " ");
         }
         while((handValue <= 21) && (userStick != 2)) {
-            //System.out.println("value of hand start " + handValue);
+            System.out.println("value of hand start " + handValue);
             System.out.println();
             System.out.println("would you like to twist or stick 1/2");
             // read user input
@@ -97,11 +97,11 @@ public class BlackJack {
                 for (Card card : userHand) {
                     System.out.print(card.getSymbol());
                     System.out.print(card.getSuit());
-                    //System.out.print(card.getValue());
+                    System.out.print(card.getValue());
                     handValue += card.getValue();
                 }
                 System.out.println();
-               // System.out.println("value of hand " + handValue);
+                System.out.println("value of hand " + handValue);
             } else {
                 return handValue;
             }
@@ -117,7 +117,6 @@ public class BlackJack {
                 handValue += card.getValue();
                 System.out.print(card.getSymbol());
                 System.out.print(card.getSuit() + " ");
-                //System.out.println("handValue" + handValue);
             }
             System.out.println();
             if (computerDecision(handValue)) {
@@ -129,13 +128,6 @@ public class BlackJack {
                 return handValue;
             }
         }
-        for (Card card : computerHand) {
-            System.out.print(card.getSymbol());
-            System.out.print(card.getSuit() + " ");
-           // System.out.println("handValue" + handValue);
-        }
-        //System.out.println("handValue" + handValue);
-        System.out.println();
         System.out.println("LUCKY YOU THE COMPUTER WENT BUST!");
         return -1;
     }
