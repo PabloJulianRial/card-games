@@ -1,10 +1,11 @@
 package org.example;
 
+import org.example.Games.BlackJack.BlackJack;
+
 public class Main {
     public static void main(String[] args) {
-//        Poker poker = new Poker();
-//        poker.playPoker();
-
+        BlackJack blackJack = new BlackJack();
+        blackJack.play();
 
     }
 }

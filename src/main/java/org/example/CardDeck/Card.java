@@ -4,7 +4,7 @@ public class Card implements Comparable<Card> {
 
     private final String symbol;
     private final String suit;
-    private final int value;
+    private int value;
 
     public Card(String symbol, String suit, int value) {
         this.symbol = symbol;
@@ -12,6 +12,9 @@ public class Card implements Comparable<Card> {
         this.value = value;
     }
 
+    public void setValue(int value) {
+        this.value = value;
+    }
 
     public String getSymbol() {
         return symbol;

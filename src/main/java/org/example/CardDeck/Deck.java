@@ -34,6 +34,7 @@ public class Deck {
         for (Card card : inDeck) {
             System.out.print(card.getCard());
         }
+        System.out.println();
     }
 
     public void shuffle() {
