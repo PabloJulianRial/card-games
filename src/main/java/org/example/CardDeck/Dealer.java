@@ -64,11 +64,11 @@ public class Dealer {
             isCombination = true;
         }
         ////------------------check for straight---------------------///////////
-        if ((computerHand[1].getValue() - computerHand[0].getValue() == 1) && (computerHand[2].getValue() - computerHand[1].getValue() == 1)) {
+        if ((computerHand[0].getValue() - computerHand[1].getValue() == 1) && (computerHand[1].getValue() - computerHand[2].getValue() == 1)) {
             isComputerStraight = true;
             isCombination = true;
         }
-        if ((playerHand[1].getValue() - playerHand[0].getValue() == 1) && (playerHand[2].getValue() - playerHand[1].getValue() == 1)) {
+        if ((playerHand[0].getValue() - playerHand[1].getValue() == 1) && (playerHand[1].getValue() - playerHand[2].getValue() == 1)) {
             isPlayerStraight = true;
             isCombination = true;
         }
@@ -113,13 +113,11 @@ public class Dealer {
                 System.out.println("Computer has Straight flush!!");
                 //-----------------------both straight flush----------------------
             } else {
+                System.out.println(player + " has Straight flush and " + playerHand[0].getSymbol() + " high");
+                System.out.println("Computer has Straight flush and " + computerHand[0].getSymbol() + " high");
                 if (playerHand[0].getValue() > computerHand[0].getValue()) {
-                    System.out.println(player + " has Straight flush and " + playerHand[0].getSymbol() + " high");
-                    System.out.println("Computer has Straight flush and " + computerHand[0].getSymbol() + " high");
                     playerWins = true;
                 } else if (playerHand[0].getValue() < computerHand[0].getValue()) {
-                    System.out.println("Computer has Straight flush and " + computerHand[0].getSymbol() + " high");
-                    System.out.println(player + " has Straight flush and " + playerHand[0].getSymbol() + " high");
                     computerWins = true;
                 } else {
                     itsATie = true;
@@ -141,16 +139,14 @@ public class Dealer {
                 computerWins = true;
                 //both 3 of a kind----------------------
             } else {
+                System.out.println(player + " has 3 of a kind, 3 " + playerHand[0].getSymbol() + "'s");
+                System.out.println("Computer has 3 of a kind, 3 " + computerHand[0].getSymbol() + "'s");
                 if (playerHand[0].getValue() > computerHand[0].getValue()) {
                     System.out.println(player);
                     playerWins = true;
                 } else if (playerHand[0].getValue() < computerHand[0].getValue()) {
-                    System.out.println(player + " has 3 of a kind, 3 " + playerHand[0].getSymbol() + "'s");
-                    System.out.println("Computer has 3 of a kind, 3 " + computerHand[0].getSymbol() + "'s");
                     computerWins = true;
                 } else {
-                    System.out.println(player + " has 3 of a kind, 3 " + playerHand[0].getSymbol() + "'s");
-                    System.out.println("Computer has 3 of a kind, 3 " + computerHand[0].getSymbol() + "'s");
                     itsATie = true;
                 }
             }
@@ -168,13 +164,11 @@ public class Dealer {
                 computerWins = true;
                 //-----------------------------both straight----------------------
             } else {
+                System.out.println(player + " has a straight and " + playerHand[0].getValue() + " high");
+                System.out.println("Computer has a straight and " + computerHand[0] + " high");
                 if (playerHand[0].getValue() > computerHand[0].getValue()) {
                     playerWins = true;
-                    System.out.println(player + " has a straight and " + playerHand[0].getValue() + " high");
-                    System.out.println("Computer has a straight and " + computerHand[0] + " high");
                 } else if (playerHand[0].getValue() < computerHand[0].getValue()) {
-                    System.out.println(player + " has a straight and " + playerHand[0].getValue() + " high");
-                    System.out.println("Computer has a straight and " + computerHand[0] + " high");
                     computerWins = true;
                 } else {
                     itsATie = true;
@@ -195,13 +189,11 @@ public class Dealer {
                 computerWins = true;
                 //------------------------both flush----------------------
             } else {
+                System.out.println(player + " has a flush and " + playerHand[0].getSymbol() + " high");
+                System.out.println("Computer has a flush and " + computerHand[0].getSymbol() + " high");
                 if (playerHand[0].getValue() > computerHand[0].getValue()) {
-                    System.out.println(player + " has a flush and " + playerHand[0].getSymbol() + " high");
-                    System.out.println("Computer has a flush and " + computerHand[0].getSymbol() + " high");
                     playerWins = true;
                 } else if (playerHand[0].getValue() < computerHand[0].getValue()) {
-                    System.out.println(player + " has a flush and " + playerHand[0].getSymbol() + " high");
-                    System.out.println("Computer has a flush and " + computerHand[0].getSymbol() + " high");
                     computerWins = true;
                 } else {
                     itsATie = true;
@@ -220,8 +212,8 @@ public class Dealer {
                 computerWins = true;
                 //------------------------both pairs----------------------
             } else {
-                System.out.println("Computer has a pair of " + computerHand[0].getSymbol() + "'s and a " + computerHand[2].getSymbol());
-                System.out.println(player + " has a pair of " + playerHand[0].getSymbol() + "'s and a " + playerHand[2].getSymbol());
+                System.out.println("Computer has a pair");
+                System.out.println(player + " has a pair");
                 if (playerHand[0].getValue() > computerHand[0].getValue()) {
 
                     playerWins = true;
@@ -240,7 +232,7 @@ public class Dealer {
             }
         } else {
             if (isPlayerPairs) {
-                System.out.println(player + " has a pair of " + playerHand[0].getSymbol() + "'s");
+                System.out.println(player + " has a pair");
                 playerWins = true;
             }
         }
@@ -272,5 +264,30 @@ public class Dealer {
                 }
             }
         }
+
+    }
+
+    public void resetBooleans() {
+        isComputerThreeOfOKind = false;
+        isCombination = false;
+        isPlayerThreeOfOKind = false;
+        isComputerFlush = false;
+        isPlayerFlush = false;
+        isComputerStraight = false;
+        isPlayerStraight = false;
+        isComputerPairs = false;
+        isPlayerPairs = false;
+        isComputerAce = false;
+        isPlayerAce = false;
+        isComputerKing = false;
+        isPlayerKing = false;
+        isComputerQueen = false;
+        isPlayerQueen = false;
+        isComputerStraightFlush = false;
+        isPlayerStraightFlush = false;
+        computerWins = false;
+        playerWins = false;
+        itsATie = false;
+
     }
 }

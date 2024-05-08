@@ -1,4 +1,4 @@
-package org.example.Games;
+package org.example.Games.Poker;
 
 import org.example.CardDeck.Card;
 import org.example.CardDeck.Dealer;
@@ -22,7 +22,8 @@ public class Poker {
     private final UserPlayer user;
     private final Card[] playerHand = new Card[3];
     private final Card[] computerHand = new Card[3];
-    private final FileRead fileRead = new FileRead("src/main/java/org/example/Assets/RulesPoker");
+    private final FileRead instructions = new FileRead("src/main/java/org/example/Assets/PokerRules");
+    private final FileRead leaderBoard = new FileRead("src/main/java/org/example/Assets/PokerScores.txt");
     private boolean isGameFinished = false;
     private int bank = 200;
     private int bet = 0;
@@ -36,16 +37,17 @@ public class Poker {
     }
 
     public void playPoker() {
+        isGameFinished = false;
         System.out.println();
         Scanner input = new Scanner(System.in);
-        fileRead.readAllScores("src/main/java/org/example/Assets/RulesPoker");
+
         System.out.println("Please enter your name:");
         String player = input.nextLine();
         System.out.println(YELLOW + "Welcome " + player + ", let's play some poker. Here is £200 to get you started. Good luck!" + RESET);
         while (!isGameFinished) {
-            deck.printDeck();
+
             dealer.dealHands(playerHand, computerHand);
-            deck.printDeck();
+
             Arrays.sort(computerHand);
             Arrays.sort(playerHand);
             System.out.println(player + " has: £" + bank + " in the bank \uD83D\uDCB0");
@@ -56,7 +58,7 @@ public class Poker {
             System.out.println();
             System.out.println(CYAN + player + "'s Hand: " + RESET);
             dealer.printHand(playerHand, player);
-            deck.printDeck();
+
             System.out.println(GREEN + "Enter your bet to see computer's cards or 0 to fold" + RESET);
             bet = user.getBet(bank);
             System.out.println("Bet: £" + bet);
@@ -101,8 +103,9 @@ public class Poker {
                 System.out.println(player + " has " + bank + " in the bank");
                 System.out.println("Play another round: (enter 'y' for yes or any other letter for no)");
                 String playAgain = String.valueOf(Character.toUpperCase(input.next().charAt(0)));
+                dealer.resetBooleans();
                 if (!playAgain.equals("Y")) {
-                    fileRead.writeScore(player, bank);
+                    leaderBoard.writeScore(player, bank);
                     isGameFinished = true;
                 }
             }
