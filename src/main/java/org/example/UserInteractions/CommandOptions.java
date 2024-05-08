@@ -1,8 +1,7 @@
 package org.example.UserInteractions;
 
 public enum CommandOptions {
-    WELCOME("Welcome to 'JAVA Casino' "),
-    OPTIONS("Options"),
+    OPTIONS("SELECT AN OPTION  ↓"),
     BJ_RULES("Press 1 to see Black Jack instructions"),
     POKER_RULES("Press 2 to see Poker instructions"),
     BJ_LEADERBOARD("Press 3 for Black Jack leaderboard"),

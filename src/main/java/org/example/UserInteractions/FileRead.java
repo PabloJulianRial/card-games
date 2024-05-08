@@ -8,11 +8,10 @@ public class FileRead {
     private final String file;
     BufferedWriter writer;
     BufferedReader reader;
-    ArrayList<String> leaderboard = new ArrayList<String>();
+    ArrayList<String> leaderboard = new ArrayList<>();
     String YELLOW = "\u001B[33m";
     String RESET = "\u001B[0m";
 
-    // Constructor
     public FileRead(String file) {
         this.file = file;
         try {
@@ -23,16 +22,14 @@ public class FileRead {
         }
     }
 
-
     public void writeScore(String username, int score) {
         try {
-            writer.write(username + " : " + score + "\n");
+            writer.write("###   " + username + " : " + score + "\n");
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     public void readAllScores() {
         try {

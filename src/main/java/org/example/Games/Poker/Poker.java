@@ -1,7 +1,6 @@
 package org.example.Games.Poker;
 
 import org.example.CardDeck.Card;
-import org.example.CardDeck.Dealer;
 import org.example.CardDeck.Deck;
 import org.example.UserInteractions.FileRead;
 import org.example.UserInteractions.UserPlayer;
@@ -22,22 +21,17 @@ public class Poker {
     private final UserPlayer user;
     private final Card[] playerHand = new Card[3];
     private final Card[] computerHand = new Card[3];
-    private final FileRead instructions = new FileRead("src/main/java/org/example/Assets/PokerRules");
     private final FileRead leaderBoard = new FileRead("src/main/java/org/example/Assets/PokerScores.txt");
-    private boolean isGameFinished = false;
     private int bank = 200;
-    private int bet = 0;
-    private int ante = 0;
-    private int pot = 0;
 
     public Poker() {
         this.deck = new Deck();
-        this.dealer = new Dealer(deck);
+        this.dealer = new Dealer();
         this.user = new UserPlayer();
     }
 
     public void playPoker() {
-        isGameFinished = false;
+        boolean isGameFinished = false;
         System.out.println();
         Scanner input = new Scanner(System.in);
 
@@ -45,30 +39,33 @@ public class Poker {
         String player = input.nextLine();
         System.out.println(YELLOW + "Welcome " + player + ", let's play some poker. Here is £200 to get you started. Good luck!" + RESET);
         while (!isGameFinished) {
-
             dealer.dealHands(playerHand, computerHand);
-
             Arrays.sort(computerHand);
             Arrays.sort(playerHand);
             System.out.println(player + " has: £" + bank + " in the bank \uD83D\uDCB0");
             System.out.println();
             System.out.println(GREEN + "Place ante to see your cards" + RESET);
-            ante = user.getBet(bank);
+            int ante = user.getBet(bank);
             System.out.println("Ante: £" + ante);
             System.out.println();
             System.out.println(CYAN + player + "'s Hand: " + RESET);
             dealer.printHand(playerHand, player);
 
             System.out.println(GREEN + "Enter your bet to see computer's cards or 0 to fold" + RESET);
-            bet = user.getBet(bank);
+            int bet = user.getBet(bank);
             System.out.println("Bet: £" + bet);
             if (bet == 0) {
                 System.out.println(RED + player + " has folded and lost the ante: " + ante + RESET);
                 System.out.println();
-
-                System.out.println(player + " has: £" + bank + "in the bank");
-                bet = input.nextInt();
-                System.out.println("Bet: £" + bet);
+                bank -= ante;
+                System.out.println(player + " has: £" + bank + " in the bank");
+                System.out.println("Play another round: (enter 'y' for yes or any other letter for no)");
+                String playAgain = String.valueOf(Character.toUpperCase(input.next().charAt(0)));
+                Dealer.newState.resetBooleans();
+                if (!playAgain.equals("Y")) {
+                    leaderBoard.writeScore(player, bank);
+                    isGameFinished = true;
+                }
             } else if (bet < 0) {
                 System.out.println("Invalid bet, bet must be positive integer");
                 bet = input.nextInt();
@@ -86,13 +83,17 @@ public class Poker {
                 dealer.printHand(playerHand, player);
                 System.out.println();
                 dealer.checkHands(playerHand, computerHand);
+                if (dealer.hasLessThanQueenHigh(computerHand)) {
+                    System.out.println("Computer has less than Queen high. Dealing cards again...");
+                    continue;
+                }
                 dealer.determineWinner(playerHand, computerHand, player);
-                pot = bet + ante;
-                if (dealer.computerWins) {
+                int pot = bet + ante;
+                if (Dealer.newState.computerWins) {
                     System.out.println(RED + "Computer wins" + RESET);
                     bank -= pot;
                     System.out.println("Player looses: £" + pot);
-                } else if (dealer.playerWins) {
+                } else if (Dealer.newState.playerWins) {
                     bank += pot;
                     System.out.println(GREEN + player + " wins" + RESET);
                     System.out.println(player + " gets £ " + pot + " added to the bank");
@@ -103,7 +104,7 @@ public class Poker {
                 System.out.println(player + " has " + bank + " in the bank");
                 System.out.println("Play another round: (enter 'y' for yes or any other letter for no)");
                 String playAgain = String.valueOf(Character.toUpperCase(input.next().charAt(0)));
-                dealer.resetBooleans();
+                Dealer.newState.resetBooleans();
                 if (!playAgain.equals("Y")) {
                     leaderBoard.writeScore(player, bank);
                     isGameFinished = true;
@@ -111,4 +112,5 @@ public class Poker {
             }
         }
     }
+
 }
