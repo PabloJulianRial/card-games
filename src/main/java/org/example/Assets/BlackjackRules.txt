@@ -1,0 +1,35 @@
+********************************************************************************************************************
+**************************************** BLACK JACK INSTRUCTIONS ***************************************************
+********************************************************************************************************************
+***    Welcome to the exciting world of Black Jack! Here's your comprehensive guide to playing the game:         ***
+***                                                                                                              ***
+***    Black Jack, also known as 21, is a classic card game that's easy to learn but difficult to master.        ***
+***    The objective is simple: beat the dealer's hand without going over 21.                                    ***
+***                                                                                                              ***
+***    To start, each player, including the dealer, is dealt two cards. In most variations, the dealer's         ***
+***    first card is dealt face-up, while the second card is dealt face-down. All cards are worth their          ***
+***    face value, except for face cards (Jack, Queen, King), which are each worth 10 points, and Aces,          ***
+***    which can be worth either 1 or 11 points, depending on which value benefits the player the most.          ***
+***                                                                                                              ***
+***    After receiving your initial two cards, you have several options:                                         ***
+***                                                                                                              ***
+***    Hit: Request another card to increase your hand total. You can continue to hit until you're               ***
+***    satisfied with your hand or until you exceed 21 points, resulting in a bust.                              ***
+***    Stand: Decide to keep your current hand and end your turn. This is typically done when you're             ***
+***    satisfied with your hand and believe it's strong enough to beat the dealer.                               ***
+***    Double Down: Double your original bet and receive only one additional card. This option is usually        ***
+***    chosen when a player believes they have a strong chance of winning with just one more card.               ***
+***    Split: If your initial two cards are of the same rank (e.g., two 7s or two Queens), you have the          ***
+***    option to split them into two separate hands, each with its own bet. Additional cards are then            ***
+***    dealt to each hand, and you play them separately.                                                         ***
+***    Surrender: In some variations of the game, players may have the option to surrender, forfeiting           ***
+***    half of their bet and ending the hand immediately.                                                        ***
+***    Once all players have completed their turns, the dealer reveals their face-down card. The dealer          ***
+***    must then hit until they reach a total of 17 or higher. If the dealer busts, all remaining players win.   ***
+***    If the dealer doesn't bust, the player with a hand total closer to 21 than the dealer's wins.             ***
+***    In the case of a tie, it's a push, and the player's bet is returned.                                      ***
+***                                                                                                              ***
+***    Now that you know the basics, are you ready to test your luck and skill at Black Jack?                    ***
+********************************************************************************************************************
+************************************************* GOOD LUCK! *******************************************************
+********************************************************************************************************************

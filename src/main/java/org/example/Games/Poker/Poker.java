@@ -1,4 +1,4 @@
-package org.example.Games;
+package org.example.Games.Poker;
 
 import org.example.CardDeck.Card;
 import org.example.CardDeck.Dealer;
@@ -37,6 +37,7 @@ public class Poker {
     }
 
     public void playPoker() {
+        isGameFinished = false;
         System.out.println();
         Scanner input = new Scanner(System.in);
 

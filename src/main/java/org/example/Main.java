@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.Games.Poker;
+import org.example.Games.Poker.Poker;
 import org.example.UserInteractions.FileRead;
 import org.example.UserInteractions.ListOfCommands;
 
@@ -36,7 +36,7 @@ public class Main {
 //                    BlackJack.playBlackJack();
 //                    break;
                 case 6:
-                    gameStarted = true;
+//                    gameStarted = true;
                     poker.playPoker();
                     break;
                 default:
