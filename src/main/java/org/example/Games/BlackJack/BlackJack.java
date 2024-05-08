@@ -50,7 +50,6 @@ public class BlackJack {
             }
 
             else {
-                // gambling may need to be added here
                 System.out.println("YOU WENT BUST YOU BLOODY FOOL!");
                 System.out.println("THE COMPUTER WINS THIS HAND MATEY");
                 playerBank = playerBank - bet;
