@@ -19,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
         WelcomeMessage.readAllScores();
         System.out.println();
+
         boolean gameStarted = false;
         while (!gameStarted) {
             commands.printMessages();
