@@ -75,11 +75,9 @@ public class Poker {
             } else {
                 System.out.println();
                 System.out.println(PURPLE + "Computer's Hand: " + RESET);
-                System.out.println();
                 dealer.printHand(computerHand, "Computer");
                 System.out.println();
                 System.out.println(CYAN + player + "'s Hand: " + RESET);
-                System.out.println();
                 dealer.printHand(playerHand, player);
                 System.out.println();
                 dealer.checkHands(playerHand, computerHand);
@@ -102,9 +100,15 @@ public class Poker {
                 }
                 System.out.println();
                 System.out.println(player + " has " + bank + " in the bank");
+
                 System.out.println("Play another round: (enter 'y' for yes or any other letter for no)");
                 String playAgain = String.valueOf(Character.toUpperCase(input.next().charAt(0)));
                 Dealer.newState.resetBooleans();
+                if (bank <= 0) {
+                    System.out.println(RED + "Not so fast cowboy, you've lost all your money, go home." + RESET);
+                    isGameFinished = true;
+                    break;
+                }
                 if (!playAgain.equals("Y")) {
                     leaderBoard.writeScore(player, bank);
                     isGameFinished = true;
