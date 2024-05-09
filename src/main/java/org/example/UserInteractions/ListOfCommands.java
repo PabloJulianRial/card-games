@@ -15,7 +15,6 @@ public class ListOfCommands {
         }
     }
 
-   
     public int optionSelect() {
         while (true) {
             try {
@@ -27,17 +26,6 @@ public class ListOfCommands {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter an integer value.");
-                input.next();
-            }
-        }
-    }
-
-    public String nameInput() {
-        while (true) {
-            try {
-                return input.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid name");
                 input.next();
             }
         }

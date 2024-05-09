@@ -1,5 +1,7 @@
 package org.example.UserInteractions;
 
+import org.example.Games.Poker.Color;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -9,8 +11,6 @@ public class FileRead {
     BufferedWriter writer;
     BufferedReader reader;
     ArrayList<String> leaderboard = new ArrayList<>();
-    String YELLOW = "\u001B[33m";
-    String RESET = "\u001B[0m";
 
     public FileRead(String file) {
         this.file = file;
@@ -40,7 +40,7 @@ public class FileRead {
                 leaderboard.add(line);
             }
             for (int i = 0; i < leaderboard.size(); i++) {
-                System.out.println(YELLOW + leaderboard.get(i) + RESET);
+                System.out.println(Color.YELLOW + leaderboard.get(i) + Color.RESET);
             }
         } catch (IOException e) {
             e.printStackTrace();
