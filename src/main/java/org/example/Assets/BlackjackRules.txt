@@ -10,7 +10,7 @@
 ***                                                                                                                  ***
 ***        2 through 10: The number listed on the card (e.g., 2 is worth 2 points)                                   ***
 ***        Jack, Queen, King: 10 points                                                                              ***
-***        Ace: 11 points                                                                                            ***
+***        Ace: 1-11 points                                                                                          ***
 ***        An Ace and a 10, Jack, Queen, or King equals 21 points and is known as a Blackjack.                       ***
 ***                                                                                                                  ***
 ***                                                                                                                  ***
