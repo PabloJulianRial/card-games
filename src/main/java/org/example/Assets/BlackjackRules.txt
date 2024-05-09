@@ -1,35 +1,53 @@
-********************************************************************************************************************
-**************************************** BLACK JACK INSTRUCTIONS ***************************************************
-********************************************************************************************************************
-***    Welcome to the exciting world of Black Jack! Here's your comprehensive guide to playing the game:         ***
-***                                                                                                              ***
-***    Black Jack, also known as 21, is a classic card game that's easy to learn but difficult to master.        ***
-***    The objective is simple: beat the dealer's hand without going over 21.                                    ***
-***                                                                                                              ***
-***    To start, each player, including the dealer, is dealt two cards. In most variations, the dealer's         ***
-***    first card is dealt face-up, while the second card is dealt face-down. All cards are worth their          ***
-***    face value, except for face cards (Jack, Queen, King), which are each worth 10 points, and Aces,          ***
-***    which can be worth either 1 or 11 points, depending on which value benefits the player the most.          ***
-***                                                                                                              ***
-***    After receiving your initial two cards, you have several options:                                         ***
-***                                                                                                              ***
-***    Hit: Request another card to increase your hand total. You can continue to hit until you're               ***
-***    satisfied with your hand or until you exceed 21 points, resulting in a bust.                              ***
-***    Stand: Decide to keep your current hand and end your turn. This is typically done when you're             ***
-***    satisfied with your hand and believe it's strong enough to beat the dealer.                               ***
-***    Double Down: Double your original bet and receive only one additional card. This option is usually        ***
-***    chosen when a player believes they have a strong chance of winning with just one more card.               ***
-***    Split: If your initial two cards are of the same rank (e.g., two 7s or two Queens), you have the          ***
-***    option to split them into two separate hands, each with its own bet. Additional cards are then            ***
-***    dealt to each hand, and you play them separately.                                                         ***
-***    Surrender: In some variations of the game, players may have the option to surrender, forfeiting           ***
-***    half of their bet and ending the hand immediately.                                                        ***
-***    Once all players have completed their turns, the dealer reveals their face-down card. The dealer          ***
-***    must then hit until they reach a total of 17 or higher. If the dealer busts, all remaining players win.   ***
-***    If the dealer doesn't bust, the player with a hand total closer to 21 than the dealer's wins.             ***
-***    In the case of a tie, it's a push, and the player's bet is returned.                                      ***
-***                                                                                                              ***
-***    Now that you know the basics, are you ready to test your luck and skill at Black Jack?                    ***
-********************************************************************************************************************
-************************************************* GOOD LUCK! *******************************************************
-********************************************************************************************************************
+************************************************************************************************************************
+**************************************** BlackJack Instructions ********************************************************
+************************************************************************************************************************
+***                                                                                                                  ***
+***    The goal of Blackjack is to beat the dealer’s hand without going over 21.                                     ***
+***    In Blackjack, every player is competing against the dealer—not each other. In a given round, the              ***
+***    player’s ultimate goal is to get a hand that’s higher than the dealer’s (without being higher than 21, or     ***
+***    "busting"). Only by beating the dealer can a player win their bet. Players determine the value of their       ***
+***    hand by tallying up the point values of their cards:                                                          ***
+***                                                                                                                  ***
+***        2 through 10: The number listed on the card (e.g., 2 is worth 2 points)                                   ***
+***        Jack, Queen, King: 10 points                                                                              ***
+***        Ace: 1 or 11 points (the player gets to choose)                                                           ***
+***        An Ace and a 10, Jack, Queen, or King equals 21 points and is known as a Blackjack.                       ***
+***                                                                                                                  ***
+***                                                                                                                  ***
+***     - All the players make a bet with their chips.                                                               ***
+***     Using whatever betting materials they have on hand, each player wagers a certain amount of currency          ***
+***     (before they even get their cards). All players must submit their bets before the round officially           ***
+***     starts.                                                                                                      ***
+***                                                                                                                  ***
+***     - The dealer gives a card to each player as well as themselves.                                              ***
+***     The dealer hands a card face-up to each player and then places a card face-down in front of themselves.      ***
+***     It’s okay if the players can see each others’ hands—all that matters is that they can’t see the dealer’s     ***
+***     first card.                                                                                                  ***
+***                                                                                                                  ***
+***     - The dealer hands out a second card to every player.As they did before, the dealer passes another face-up   ***
+***     card to each player. This time, though, the dealer places their second card face-up in their hand (leaving   ***
+***     the first card face-down still).                                                                             ***
+***                                                                                                                  ***
+***     - Decide if you want to stick or twist.                                                                      ***
+***     Take a look at your 2 cards and add the numerical total together—how close is it to 21, and how does         ***
+***     it compare to the dealer’s hand? If the total is pretty high (like 17 or 18, which is very close to 21),     ***
+***     “staying” (leaving your hand as-is) is probably your best option; if your total is on the low end (like      ***
+***     in the single digits), “hitting,” or getting another card added to your hand, could be beneficial.           ***
+***                                                                                                                  ***
+***     - Sticking simply means that you don’t want the dealer to give you another card that’ll get                  ***
+***     added to your total. This is signified by holding your hand flat and waving it.                              ***
+***                                                                                                                  ***
+***     - Twisting means that you’d like the dealer to add another card to your hand, and is signified by            ***
+***     tapping the game table with your pointer and middle finger. You can hit as many times as you’d like          ***
+***                                                                                                                  ***
+***     until you reach or go over 21.                                                                               ***
+***                                                                                                                  ***
+***                                                                                                                  ***
+***     - The dealer reveals their second card and winners are determined.                                           ***
+***     At this point, the dealer flips over their original card to reveal their hand total. If the total is         ***
+***     16 or lower, they’re required to hit and take another card. If the card is 17 or higher, the dealer is       ***
+***     required to stay.                                                                                            ***
+***                                                                                                                  ***
+************************************************************************************************************************
+************************************************* GOOD LUCK! ***********************************************************
+************************************************************************************************************************

@@ -13,8 +13,13 @@ public class Main {
     static FileRead BlackjackLeaderboard = new FileRead("src/main/java/org/example/Assets/BlackjackScores.txt");
     static FileRead BlackjackRules = new FileRead("src/main/java/org/example/Assets/BlackjackRules.txt");
     static FileRead PokerRules = new FileRead("src/main/java/org/example/Assets/PokerRules.txt");
+    static FileRead WelcomeMessage = new FileRead("src/main/java/org/example/Assets/Welcome.txt");
+
 
     public static void main(String[] args) {
+        WelcomeMessage.readAllScores();
+        System.out.println();
+
         boolean gameStarted = false;
         while (!gameStarted) {
             commands.printMessages();
