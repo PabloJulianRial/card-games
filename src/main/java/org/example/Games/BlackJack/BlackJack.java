@@ -65,6 +65,7 @@ public class BlackJack {
                 leaderBoard.writeScore(player, playerBank);
             }
         }
+        stopPlaying = 1;
     }
 
     private void start() {
