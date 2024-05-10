@@ -65,6 +65,7 @@ public class BlackJack {
                 leaderBoard.writeScore(player, playerBank);
             }
         }
+        stopPlaying = 1;
     }
 
     private void start() {
@@ -108,6 +109,17 @@ public class BlackJack {
             System.out.println("would you like to twist or stick 1/2");
             if (userInput.optionSelect() == 1) {
                 userHand.add(cardDeck.dealCard());
+                int value = 0;
+                for(Card card: userHand) {
+                    value = value + card.getValue();
+                }
+                if (value > 21) {
+                    for (Card card: userHand) {
+                        if (card.getSymbol().equals("A")) {
+                            card.setValue(1);
+                        }
+                    }
+                }
                 handValue = 0;
                 for (Card card : userHand) {
                     System.out.print(card.getSymbol());
@@ -130,6 +142,17 @@ public class BlackJack {
                 handValue += card.getValue();
                 System.out.print(card.getSymbol());
                 System.out.print(card.getSuit() + " ");
+            }
+            int value = 0;
+            for(Card card: userHand) {
+                value = value + card.getValue();
+            }
+            if (value > 21) {
+                for (Card card: userHand) {
+                    if (card.getSymbol().equals("A")) {
+                        card.setValue(1);
+                    }
+                }
             }
             System.out.println();
             if (computerDecision(handValue)) {

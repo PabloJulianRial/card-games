@@ -10,7 +10,7 @@
 ***                                                                                                                  ***
 ***        2 through 10: The number listed on the card (e.g., 2 is worth 2 points)                                   ***
 ***        Jack, Queen, King: 10 points                                                                              ***
-***        Ace: 1 or 11 points (the player gets to choose)                                                           ***
+***        Ace: 1-11 points                                                                                          ***
 ***        An Ace and a 10, Jack, Queen, or King equals 21 points and is known as a Blackjack.                       ***
 ***                                                                                                                  ***
 ***                                                                                                                  ***
@@ -20,13 +20,9 @@
 ***     starts.                                                                                                      ***
 ***                                                                                                                  ***
 ***     - The dealer gives a card to each player as well as themselves.                                              ***
-***     The dealer hands a card face-up to each player and then places a card face-down in front of themselves.      ***
-***     It’s okay if the players can see each others’ hands—all that matters is that they can’t see the dealer’s     ***
-***     first card.                                                                                                  ***
+***     The dealer places a card in front of themselves and asks the player to make a bet, in order to play.         ***
 ***                                                                                                                  ***
-***     - The dealer hands out a second card to every player.As they did before, the dealer passes another face-up   ***
-***     card to each player. This time, though, the dealer places their second card face-up in their hand (leaving   ***
-***     the first card face-down still).                                                                             ***
+***     - The dealer then deals two cards to the player.                                                             ***
 ***                                                                                                                  ***
 ***     - Decide if you want to stick or twist.                                                                      ***
 ***     Take a look at your 2 cards and add the numerical total together—how close is it to 21, and how does         ***
@@ -34,13 +30,11 @@
 ***     “staying” (leaving your hand as-is) is probably your best option; if your total is on the low end (like      ***
 ***     in the single digits), “hitting,” or getting another card added to your hand, could be beneficial.           ***
 ***                                                                                                                  ***
-***     - Sticking simply means that you don’t want the dealer to give you another card that’ll get                  ***
-***     added to your total. This is signified by holding your hand flat and waving it.                              ***
+***     - Sticking simply means that you say that you have enough cards and no more get added to your total.         ***
 ***                                                                                                                  ***
-***     - Twisting means that you’d like the dealer to add another card to your hand, and is signified by            ***
-***     tapping the game table with your pointer and middle finger. You can hit as many times as you’d like          ***
+***     - Twisting means that you’d like the dealer to add another card to your hand, you can hit as many times      ***
+***     as you’d like until you reach or go over 21.                                                                 ***
 ***                                                                                                                  ***
-***     until you reach or go over 21.                                                                               ***
 ***                                                                                                                  ***
 ***                                                                                                                  ***
 ***     - The dealer reveals their second card and winners are determined.                                           ***

@@ -44,6 +44,9 @@ public class Main {
                 case 6:
                     poker.playPoker();
                     break;
+                case 7:
+                    gameStarted = true;
+                    break;
                 default:
                     System.out.println("Invalid option! Please choose again.");
                     break;
