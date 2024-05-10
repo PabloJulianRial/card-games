@@ -32,28 +32,56 @@ public class Dealer {
     }
 
     public void checkHands(Card[] playerHand, Card[] computerHand) {
-        newState.isCombination = true; // Assume a combination until proven otherwise
-
-        newState.isComputerThreeOfOKind = isThreeOfAKind(computerHand);
-        newState.isPlayerThreeOfOKind = isThreeOfAKind(playerHand);
-
-        newState.isComputerFlush = isFlush(computerHand);
-        newState.isPlayerFlush = isFlush(playerHand);
-
-        newState.isComputerStraight = isStraight(computerHand);
-        newState.isPlayerStraight = isStraight(playerHand);
-
-        newState.isComputerPairs = hasPairs(computerHand);
-        newState.isPlayerPairs = hasPairs(playerHand);
-
-        newState.isComputerAce = hasCardWithValue(computerHand, "A");
-        newState.isPlayerAce = hasCardWithValue(playerHand, "A");
-
-        newState.isComputerKing = hasCardWithValue(computerHand, "K");
-        newState.isPlayerKing = hasCardWithValue(playerHand, "K");
-
-        newState.isComputerQueen = hasCardWithValue(computerHand, "Q");
-        newState.isPlayerQueen = hasCardWithValue(playerHand, "Q");
+        if (computerHand[0].getValue() == computerHand[1].getValue() && computerHand[0].getValue() == playerHand[2].getValue()) {
+            newState.isComputerThreeOfOKind = true;
+            newState.isCombination = true;
+        }
+        if (playerHand[0].getValue() == playerHand[1].getValue() && playerHand[0].getValue() == playerHand[2].getValue()) {
+            newState.isPlayerThreeOfOKind = true;
+            newState.isCombination = true;
+        }
+        if (computerHand[0].getSuit().equals(computerHand[1].getSuit()) && computerHand[1].getSuit().equals(computerHand[2].getSuit())) {
+            newState.isComputerFlush = true;
+            newState.isCombination = true;
+        }
+        if (playerHand[0].getSuit().equals(playerHand[1].getSuit()) && playerHand[1].getSuit().equals(playerHand[2].getSuit())) {
+            newState.isPlayerFlush = true;
+            newState.isCombination = true;
+        }
+        if ((computerHand[0].getValue() - computerHand[1].getValue() == 1) && (computerHand[1].getValue() - computerHand[2].getValue() == 1)) {
+            newState.isComputerStraight = true;
+            newState.isCombination = true;
+        }
+        if ((playerHand[0].getValue() - playerHand[1].getValue() == 1) && (playerHand[1].getValue() - playerHand[2].getValue() == 1)) {
+            newState.isPlayerStraight = true;
+            newState.isCombination = true;
+        }
+        if (computerHand[0].getValue() == computerHand[1].getValue() || computerHand[0].getValue() == computerHand[2].getValue() || computerHand[1].getValue() == computerHand[2].getValue()) {
+            newState.isComputerPairs = true;
+            newState.isCombination = true;
+        }
+        if (playerHand[0].getValue() == playerHand[1].getValue() || playerHand[0].getValue() == playerHand[2].getValue() || playerHand[1].getValue() == playerHand[2].getValue()) {
+            newState.isPlayerPairs = true;
+            newState.isCombination = true;
+        }
+        if (computerHand[0].getSymbol().equals("A") || computerHand[1].getSymbol().equals("A") || computerHand[2].getSymbol().equals("A")) {
+            newState.isComputerAce = true;
+        }
+        if (playerHand[0].getSymbol().equals("A") || playerHand[1].getSymbol().equals("A") || playerHand[2].getSymbol().equals("A")) {
+            newState.isPlayerAce = true;
+        }
+        if (computerHand[0].getSymbol().equals("K") || computerHand[1].getSymbol().equals("K") || computerHand[2].getSymbol().equals("K")) {
+            newState.isComputerKing = true;
+        }
+        if (playerHand[0].getSymbol().equals("K") || playerHand[1].getSymbol().equals("K") || playerHand[2].getSymbol().equals("K")) {
+            newState.isPlayerKing = true;
+        }
+        if (computerHand[0].getSymbol().equals("Q") || computerHand[1].getSymbol().equals("Q") || computerHand[2].getSymbol().equals("Q")) {
+            newState.isComputerQueen = true;
+        }
+        if (playerHand[0].getSymbol().equals("Q") || playerHand[1].getSymbol().equals("Q") || playerHand[2].getSymbol().equals("Q")) {
+            newState.isPlayerQueen = true;
+        }
     }
 
     private boolean isThreeOfAKind(Card[] hand) {
